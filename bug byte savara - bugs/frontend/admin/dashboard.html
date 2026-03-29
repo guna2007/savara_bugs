@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Admin</h2>
+
+<script src="../js/app.js"></script>
+
+<script>
+check("admin");
+
+fetch("http://localhost:5000/api/product")
+.then(r => r.json())
+.then(d => document.body.innerHTML += d.length);
+</script>
+
+</body>
+</html>
