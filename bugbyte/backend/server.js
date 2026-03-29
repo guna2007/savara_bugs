@@ -13,6 +13,13 @@ let products = [
   { id: 1, name: "MacBook Pro", price: 150000 },
   { id: 2, name: "iPhone", price: 80000 },
   { id: 3, name: "AirPods", price: 20000 },
+  { id: 4, name: "iPad Air", price: 62000 },
+  { id: 5, name: "Apple Watch", price: 35000 },
+  { id: 6, name: "Sony WH-1000XM5", price: 28000 },
+  { id: 7, name: "Logitech MX Master 3S", price: 10500 },
+  { id: 8, name: "Samsung 27in 4K Monitor", price: 29000 },
+  { id: 9, name: "Kindle Paperwhite", price: 14000 },
+  { id: 10, name: "Mechanical Keyboard", price: 6500 },
 ];
 
 let orders = [];

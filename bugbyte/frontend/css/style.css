@@ -66,6 +66,12 @@ a:hover {
   letter-spacing: 0.2px;
 }
 
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
 .content {
   width: min(1100px, 92%);
   margin: 26px auto;
@@ -79,6 +85,11 @@ a:hover {
 .content > h2 {
   margin-bottom: 14px;
   font-size: clamp(1.2rem, 2vw, 1.55rem);
+}
+
+.subtle {
+  color: var(--muted);
+  margin-bottom: 12px;
 }
 
 #emptyProducts,
@@ -107,6 +118,22 @@ a:hover {
   border-radius: var(--radius-md);
   background: var(--surface-2);
   border: 1px solid var(--line);
+}
+
+.cart-row {
+  padding: 12px;
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.cart-row p {
+  margin: 0;
+  color: var(--text);
 }
 
 .product h4 {
@@ -139,6 +166,15 @@ button:hover {
 
 button:active {
   transform: translateY(0);
+}
+
+.danger-btn {
+  background: var(--danger);
+}
+
+.danger-btn:hover {
+  background: #8f1b11;
+  color: #ffffff;
 }
 
 .center-box {
@@ -178,6 +214,27 @@ input:focus {
   align-items: center;
   justify-content: space-between;
   gap: 10px;
+}
+
+.stack {
+  display: grid;
+  gap: 10px;
+}
+
+#total {
+  margin-top: 12px;
+  font-weight: 600;
+}
+
+.cart-actions {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 .admin-grid {
