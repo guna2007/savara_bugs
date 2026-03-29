@@ -1,171 +1,157 @@
 # KnightCode - Publish README
 
+## Project Name
+- Current name: KnightCode
+- package.json name: knightcode
 
+## What was done
+- Fixed all Easy, Medium, Hard, and Very Hard bugs.
+- Improved UI to be clean and simple.
+- Kept existing app flow and core behavior.
+- Added later features: cart item delete, clear cart, more default products, smoother UX actions.
 
-## What Was Updated
-
-- UI was polished with a minimal, professional style system.
-- Existing logic, API calls, IDs, and handlers were preserved to avoid breaking functionality.
-- Navigation and visual consistency were improved across user and admin pages.
-
-## UI Tweaks (Styling-Only)
-
-- Unified typography, spacing, cards, forms, and button styles.
-- Added responsive viewport handling on all frontend pages.
-- Improved navbar consistency and page-level action links.
-- Kept all existing JS function wiring intact.
-
-## Bug Fix Summary
+## Bugs Summary with exact file and section
 
 ### Easy Bugs (UI)
-
-1. Password fields visibility
-
-- Fixed by using masked password inputs.
-- Applied across user and admin login/register forms.
+1. Password fields visible
+- Files: frontend/user/login.html, frontend/user/register.html, frontend/admin/login.html
+- Section changed: password input fields (`type="password"`)
 
 2. Incorrect placeholders
+- Files: frontend/user/login.html, frontend/user/register.html, frontend/user/checkout.html, frontend/admin/login.html, frontend/admin/products.html
+- Section changed: input placeholder text
 
-- Updated placeholder text to match real expected input.
-- Reduced confusion in login/register/checkout/admin forms.
+3. Broken links due to wrong file extension
+- Files: frontend/user/login.html, frontend/user/register.html, frontend/user/home.html
+- Section changed: anchor link href values (`.html`)
 
-3. Broken file extension links
+4. Incorrect empty-state messages
+- Files: frontend/user/home.html, frontend/user/cart.html, frontend/js/app.js
+- Section changed: `#emptyProducts`, `#emptyCart`, and empty-state toggle logic in `loadProducts()` and `renderCartPage()`
 
-- Corrected `.htm` navigation links to `.html`.
-- Restored proper page transitions.
-
-4. Incorrect empty state messaging
-
-- Empty state now toggles based on actual data presence.
-- Prevents false "empty" messages when data exists.
-
-5. Invisible text due to color
-
-- Improved text/background contrast in buttons and headings.
-- Ensured readability in normal and hover states.
+5. Invisible text due to colors
+- File: frontend/css/style.css
+- Section changed: button colors, heading colors, hover states
 
 6. Layout misalignment
-
-- Removed offset-based misalignment in product card layout.
-- Standardized content alignment and spacing.
+- File: frontend/css/style.css
+- Section changed: product card alignment and layout spacing
 
 ### Medium Bugs (Logic/API)
-
 1. Login response mismatch
-
-- Standardized backend login success output to boolean.
-- Updated frontend check to consume response correctly.
+- Files: backend/server.js, frontend/js/app.js
+- Section changed: `/api/user/login` response and `userLogin()` check
 
 2. Incorrect API endpoints
+- Files: frontend/js/app.js, frontend/admin/dashboard.html, frontend/admin/orders.html
+- Section changed: fetch URLs for products and orders
 
-- Fixed incorrect product/order endpoint paths.
-- Aligned frontend API calls with backend routes.
+3. Products fail to load
+- File: frontend/js/app.js
+- Section changed: `loadProducts()` fetch and render handling
 
-3. Products not loading
-
-- Corrected product fetch endpoint and rendering flow.
-- Added stable array handling during rendering.
-
-4. LocalStorage key mismatch
-
-- Unified cart storage key usage in all modules.
-- Prevented missing cart data across pages.
+4. LocalStorage key mismatches
+- File: frontend/js/app.js
+- Section changed: `STORAGE_KEYS` constants and cart read/write usage
 
 5. Broken navigation/redirect logic
+- Files: frontend/js/app.js, frontend/user/*.html
+- Section changed: redirect checks (`checkAdmin`) and corrected links
 
-- Fixed user/admin redirects and guard behavior.
-- Restored expected auth flow navigation.
+6. Incorrect price calculations/display
+- Files: frontend/js/app.js, frontend/user/cart.html, frontend/user/checkout.html
+- Section changed: product/cart/checkout price display logic
 
-6. Incorrect price display
+7. Cart items ignored during checkout
+- File: frontend/js/app.js
+- Section changed: `placeOrder()` cart source logic
 
-- Removed incorrect price manipulations.
-- Display now reflects actual product/cart values.
-
-7. Cart ignored during checkout
-
-- Checkout now uses cart items consistently.
-- Prevents accidental empty order submissions.
-
-8. Admin dashboard data loading
-
-- Corrected endpoint usage and dashboard rendering path.
-- Dashboard now reliably shows product count.
+8. Admin dashboard data not loading
+- File: frontend/admin/dashboard.html
+- Section changed: dashboard fetch + safe render block
 
 ### Hard Bugs (Advanced Logic)
+1. Weak input validation in registration
+- Files: backend/server.js, frontend/js/app.js
+- Section changed: register validation in `/api/user/register` and `register()`
 
-1. Weak registration validation
+2. Product creation accepts invalid data
+- Files: backend/server.js, frontend/js/app.js
+- Section changed: `/api/products` validation and `addProduct()` validation
 
-- Added server-side validation for username/password constraints.
-- Added early client-side validation for better UX.
-
-2. Invalid product creation accepted
-
-- Added strict validation for product name and positive numeric price.
-- Rejected invalid payloads with clear response messages.
-
-3. Wrong admin function usage
-
-- Standardized admin page checks and handler usage.
-- Ensured protected pages invoke correct guard flow.
+3. Wrong function usage in admin pages
+- Files: frontend/admin/products.html, frontend/admin/dashboard.html, frontend/admin/orders.html, frontend/js/app.js
+- Section changed: admin guard calls and page action wiring
 
 4. Inconsistent storage keys across modules
+- Files: frontend/js/app.js, frontend/user/cart.html, frontend/user/checkout.html
+- Section changed: cart key usage and shared helper usage
 
-- Centralized keys in shared constants and aligned page scripts.
-- Removed drift between modules reading and writing state.
-
-5. Incorrect empty-state conditional logic
-
-- Empty-state display now depends on current data length.
-- Works correctly for products and cart views.
+5. Incorrect conditional logic for empty states
+- Files: frontend/js/app.js, frontend/user/home.html, frontend/user/cart.html
+- Section changed: conditional render for empty/non-empty states
 
 ### Very Hard Bugs (Security)
-
 1. Admin authentication bypass
-
-- Backend now validates both admin username and password.
-- Invalid credentials return unauthorized response.
+- File: backend/server.js
+- Section changed: `/api/admin/login` now validates both username and password
 
 2. Missing access control on admin routes
-
-- Added admin token middleware.
-- Protected routes now require valid `x-admin-token`.
+- File: backend/server.js
+- Section changed: `requireAdmin` middleware and admin route protection
 
 3. Unprotected product APIs
+- File: backend/server.js
+- Section changed: `POST /api/products` and `DELETE /api/products/:id` protected with `requireAdmin`
 
-- Product create/delete endpoints now require admin token.
-- Prevents unauthorized product mutations.
+4. Sensitive data exposure (card info)
+- File: backend/server.js
+- Section changed: `/api/orders` stores `cardLast4` only
 
-4. Sensitive card data exposure
+5. XSS via unsafe innerHTML rendering
+- Files: frontend/js/app.js, frontend/admin/dashboard.html, frontend/admin/orders.html, frontend/user/cart.html
+- Section changed: replaced unsafe HTML insertions with safe DOM creation and textContent
 
-- Raw card value is not persisted.
-- Only last 4 digits are stored for masked display.
+## Features added later
+1. Cart basic actions
+- Files: frontend/js/app.js, frontend/user/cart.html, frontend/css/style.css
+- Added: remove item, clear cart, cart total, checkout button from cart page
 
-5. XSS via unsafe rendering
+2. More default products
+- File: backend/server.js
+- Added: multiple new products in default `products` array
 
-- Replaced unsafe HTML injection patterns with safe DOM APIs.
-- Dynamic content is rendered through text-safe operations.
+3. Better UX flow
+- File: frontend/js/app.js
+- Added: busy state on buttons, network error handling, cleaner validation messages
 
-## Files Touched
+4. Admin product management improvement
+- File: frontend/js/app.js
+- Added: `deleteProduct(id)` and delete action rendering in admin products page
 
-- `bugbyte/package.json`
-- `bugbyte/backend/server.js`
-- `bugbyte/frontend/css/style.css`
-- `bugbyte/frontend/js/app.js`
-- `bugbyte/frontend/user/*.html`
-- `bugbyte/frontend/admin/*.html`
+## Final Files touched
+- bugbyte/backend/server.js
+- bugbyte/frontend/js/app.js
+- bugbyte/frontend/css/style.css
+- bugbyte/frontend/user/login.html
+- bugbyte/frontend/user/register.html
+- bugbyte/frontend/user/home.html
+- bugbyte/frontend/user/cart.html
+- bugbyte/frontend/user/checkout.html
+- bugbyte/frontend/admin/login.html
+- bugbyte/frontend/admin/dashboard.html
+- bugbyte/frontend/admin/products.html
+- bugbyte/frontend/admin/orders.html
+- bugbyte/package.json
+- bugbyte/package-lock.json
 
-## Run Locally
-
-1. Open terminal in `repo/bugbyte`.
-2. Install backend dependencies:
-   - `cd backend`
-   - `npm install`
-3. Start backend:
-   - `node server.js`
-4. Open frontend in browser:
-   - `../frontend/user/login.html`
+## Run locally
+1. Open terminal in repo/bugbyte
+2. cd backend
+3. npm install
+4. node server.js
+5. Open frontend/user/login.html in browser
 
 ## Notes
-
-- This publish update focused on non-breaking fixes and secure behavior.
-- UI upgrades were kept minimalistic and functional by design.
+- Use `node server.js` or `npx nodemon server.js`
+- Do not use `npm nodemon server.js`
