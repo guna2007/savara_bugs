@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <h2>Admin</h2>
+
+    <script src="../js/app.js"></script>
+
+    <script>
+        checkAdmin();
+
+        fetch("http://localhost:5000/api/products")
+            .then(r => r.json())
+            .then(d => {
+                const count = Array.isArray(d) ? d.length : 0;
+                const p = document.createElement("p");
+                p.textContent = `Products: ${count}`;
+                document.body.appendChild(p);
+            });
+    </script>
+
+</body>
+
+</html>

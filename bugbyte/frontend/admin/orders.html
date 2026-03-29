@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+  <div id="orders"></div>
+
+  <script src="../js/app.js"></script>
+
+  <script>
+    checkAdmin();
+    const ordersDiv = document.getElementById("orders");
+    const adminToken = localStorage.getItem("adminToken");
+
+    fetch("http://localhost:5000/api/orders", {
+      headers: {
+        "x-admin-token": adminToken,
+      },
+    })
+      .then(r => r.json())
+      .then(d => {
+        const orders = Array.isArray(d) ? d : [];
+        orders.forEach(o => {
+          const p = document.createElement("p");
+          p.textContent = `${o.name} ****${o.cardLast4 || ""}`;
+          ordersDiv.appendChild(p);
+        });
+      });
+  </script>
+
+</body>
+
+</html>
