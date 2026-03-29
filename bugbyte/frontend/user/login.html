@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
@@ -13,9 +14,10 @@
         <input id="username" placeholder="Enter username">
         <input id="password" type="password" placeholder="Enter password">
 
-        <button onclick="userLogin()">Login</button>
-
-        <a href="register.html">Register</a>
+        <div class="form-actions">
+            <button onclick="userLogin()">Login</button>
+            <a href="register.html">Create account</a>
+        </div>
     </div>
 
     <script src="../js/app.js"></script>

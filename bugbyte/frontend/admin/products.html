@@ -1,20 +1,36 @@
 <!DOCTYPE html>
 <html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
 <body>
 
-<input id="name" placeholder="Enter ID">
-<input id="price">
+    <div class="navbar">
+        <h2>Product Manager</h2>
+        <a href="dashboard.html">Dashboard</a>
+    </div>
 
-<button onclick="addProduct()">Add</button>
+    <div class="content fade-in">
+        <h2>Add Product</h2>
 
-<div id="list"></div>
+        <input id="name" placeholder="Product name">
+        <input id="price" placeholder="Product price">
 
-<script src="../js/app.js"></script>
+        <button onclick="addProduct()">Add</button>
 
-<script>
-checkAdmin();
-loadProducts();
-</script>
+        <div id="list"></div>
+    </div>
+
+    <script src="../js/app.js"></script>
+
+    <script>
+        checkAdmin();
+        loadProducts();
+    </script>
 
 </body>
+
 </html>

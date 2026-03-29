@@ -5,6 +5,10 @@ const STORAGE_KEYS = {
   ADMIN_TOKEN: "adminToken",
 };
 
+document.addEventListener("DOMContentLoaded", () => {
+  document.body.classList.add("fade-in");
+});
+
 /* LOGIN */
 async function userLogin() {
   const res = await fetch(API + "/api/user/login", {

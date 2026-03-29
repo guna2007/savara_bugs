@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
@@ -13,7 +14,10 @@
         <input id="username" placeholder="Admin username">
         <input id="password" type="password" placeholder="Admin password">
 
-        <button onclick="adminLogin()">Login</button>
+        <div class="form-actions">
+            <button onclick="adminLogin()">Login</button>
+            <a href="../user/login.html">User login</a>
+        </div>
     </div>
 
     <script src="../js/app.js"></script>

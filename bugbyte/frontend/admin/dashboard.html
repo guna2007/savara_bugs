@@ -1,9 +1,22 @@
 <!DOCTYPE html>
 <html>
 
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
 <body>
 
-    <h2>Admin</h2>
+    <div class="navbar">
+        <h2>Admin Dashboard</h2>
+        <a href="products.html">Manage products</a>
+    </div>
+
+    <div class="content fade-in">
+        <h2>Overview</h2>
+        <div class="admin-grid" id="dashboardStats"></div>
+    </div>
 
     <script src="../js/app.js"></script>
 
@@ -14,9 +27,11 @@
             .then(r => r.json())
             .then(d => {
                 const count = Array.isArray(d) ? d.length : 0;
-                const p = document.createElement("p");
+                const stats = document.getElementById("dashboardStats");
+                const p = document.createElement("div");
+                p.className = "stat-card";
                 p.textContent = `Products: ${count}`;
-                document.body.appendChild(p);
+                stats.appendChild(p);
             });
     </script>
 
